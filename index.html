@@ -552,7 +552,7 @@
         </div>
       </div>
 
-      <div class="glow-card reveal lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7 overflow-hidden">
+      <div class="glow-card reveal sm:col-span-2 lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7 overflow-hidden">
         <img src="assets/bento/slim-pendant.png" alt="" aria-hidden="true" class="bento-img top-0 -right-2 w-24 opacity-80">
         <div class="relative z-10">
           <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M11 2l1.6 5.6L18 9l-5.4 1.4L11 16l-1.6-5.6L4 9l5.4-1.4L11 2Z"/><path d="M18.5 13.5l.7 2.3 2.3.7-2.3.7-.7 2.3-.7-2.3-2.3-.7 2.3-.7.7-2.3Z"/></svg>
@@ -1112,8 +1112,22 @@
       const gap = 20;
       track.scrollBy({ left: dir * (item.offsetWidth + gap), behavior: 'smooth' });
     };
+    const updateButtons = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const atStart = track.scrollLeft <= 2;
+      const atEnd = track.scrollLeft >= maxScroll - 2;
+      prevBtn.disabled = atStart;
+      nextBtn.disabled = atEnd;
+      prevBtn.classList.toggle('opacity-30', atStart);
+      prevBtn.classList.toggle('pointer-events-none', atStart);
+      nextBtn.classList.toggle('opacity-30', atEnd);
+      nextBtn.classList.toggle('pointer-events-none', atEnd);
+    };
     prevBtn.addEventListener('click', () => scrollByItem(-1));
     nextBtn.addEventListener('click', () => scrollByItem(1));
+    track.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
   };
   wireCarousel('testimonial-track', 'testi-prev', 'testi-next', 'article');
   wireCarousel('insp-track', 'insp-prev', 'insp-next', 'article');
