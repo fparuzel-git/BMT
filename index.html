@@ -431,10 +431,10 @@
     </div>
   </div>
 
-  <div class="scroll-cue hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-cream/75">
+  <button type="button" id="scroll-cue" aria-label="Przewiń do kolejnej sekcji" class="scroll-cue hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-cream/75 hover:text-cream transition bg-transparent border-0 cursor-pointer">
     Przewiń
     <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-  </div>
+  </button>
 </section>
 
 <!-- ================= STATYSTYKI ================= -->
@@ -1093,6 +1093,16 @@
   };
   wireCarousel('testimonial-track', 'testi-prev', 'testi-next', 'article');
   wireCarousel('insp-track', 'insp-prev', 'insp-next', 'article');
+
+  // Scroll cue — jumps to the section right after the hero
+  const scrollCue = document.getElementById('scroll-cue');
+  if (scrollCue) {
+    scrollCue.addEventListener('click', () => {
+      const hero = document.getElementById('hero');
+      const next = hero && hero.nextElementSibling;
+      if (next) next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 
   // Product tabs — dane z katalogu BMT Modern Lighting 2025
   const products = [
