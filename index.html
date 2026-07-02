@@ -110,6 +110,32 @@
     background: radial-gradient(circle at 50% 42%, #ded8cc 0%, #2b2724 55%, #000 100%);
   }
 
+  .glow-text-wrap { position: relative; display: inline-block; }
+  .glow-text-source {
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    background-image: linear-gradient(to right, #f2994a, #f5f1ea, #9fd8f5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    mix-blend-mode: screen;
+    filter: blur(16px);
+    opacity: 0.55;
+    transform: scale(1.06);
+    animation: glow-pulse 3.6s ease-in-out infinite;
+  }
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.35; filter: blur(11px); }
+    50% { opacity: 0.9; filter: blur(24px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glow-text-source { animation: none; opacity: 0.55; }
+  }
+
   /* Light animations */
   @keyframes power-on {
     0% { opacity: 0; transform: scale(0.4); }
@@ -361,7 +387,7 @@
     </span>
 
     <h1 class="text-shield font-display font-normal text-4xl sm:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-cream">
-      Światło, które <span class="font-semibold bg-gradient-to-r from-amber via-cream to-kelvin bg-clip-text text-transparent">dostosowuje się</span><br class="hidden sm:block"> do Ciebie.
+      Światło, które <span class="glow-text-wrap"><span class="glow-text-source font-semibold" aria-hidden="true">dostosowuje się</span><span class="relative font-semibold bg-gradient-to-r from-amber via-cream to-kelvin bg-clip-text text-transparent">dostosowuje się</span></span><br class="hidden sm:block"> do Ciebie.
     </h1>
 
     <p class="text-shield mt-6 text-lg sm:text-xl text-muted font-display">
