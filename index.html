@@ -64,6 +64,13 @@
   }
   .glow-card:hover::before { opacity: 1; }
 
+  .bento-img {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 18px 30px rgba(0,0,0,0.55));
+  }
+
   .reveal {
     opacity: 0;
     transform: translateY(28px);
@@ -440,46 +447,62 @@
 
     <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-      <div class="glow-card reveal sm:col-span-2 lg:col-span-2 lg:row-span-2 rounded-3xl border border-white/[0.06] bg-gradient-to-br from-surface to-surface2 p-8 lg:p-10 flex flex-col justify-between">
-        <div>
+      <div class="glow-card reveal sm:col-span-2 lg:col-span-2 lg:row-span-2 rounded-3xl border border-white/[0.06] bg-gradient-to-br from-surface to-surface2 p-8 lg:p-10 flex flex-col justify-between overflow-hidden">
+        <img src="assets/bento/pendant-disc.png" alt="" aria-hidden="true" class="bento-img -bottom-8 -right-10 w-56 lg:w-72 opacity-50 rotate-[-8deg]">
+        <div class="relative z-10">
           <svg viewBox="0 0 24 24" class="w-9 h-9 text-amber" fill="currentColor"><path d="M12 3 18 9.5 12 21 6 9.5Z"/></svg>
           <h3 class="mt-6 font-display font-normal text-2xl text-cream">Światło, które definiuje przestrzeń</h3>
           <p class="mt-3 text-sm sm:text-base text-muted leading-relaxed max-w-md">Odpowiednie światło potrafi zmienić odbiór całego wnętrza w kilka sekund. Dobieramy temperaturę barwową i natężenie tak, by Twoja przestrzeń żyła razem z porą dnia — i zawsze robiła wrażenie.</p>
         </div>
-        <div class="mt-8 flex flex-wrap gap-2">
+        <div class="relative z-10 mt-8 flex flex-wrap gap-2">
           <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">2700–6500K</span>
           <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Ściemnianie płynne</span>
         </div>
       </div>
 
-      <div class="glow-card reveal lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7">
-        <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><rect x="9" y="9" width="6" height="6" rx="1.3"/><rect x="9" y="1.5" width="6" height="5" rx="1.3"/><rect x="9" y="17" width="6" height="5" rx="1.3"/><rect x="1.5" y="9" width="5" height="6" rx="1.3"/><rect x="17" y="9" width="5" height="6" rx="1.3"/></svg>
-        <h3 class="mt-5 font-display font-normal text-lg text-cream">Design i technologia w służbie światła</h3>
-        <p class="mt-2.5 text-sm text-muted leading-relaxed">Zapomnij o kompromisach między wyglądem a funkcją. Szynoprzewody 48V i taśmy LED COB dają pełną swobodę aranżacji — bez utraty odrobiny elegancji.</p>
+      <div class="glow-card reveal lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7 overflow-hidden">
+        <img src="assets/bento/dual-spot.png" alt="" aria-hidden="true" class="bento-img -top-8 -right-6 w-32 opacity-60 rotate-[18deg]">
+        <div class="relative z-10">
+          <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><rect x="9" y="9" width="6" height="6" rx="1.3"/><rect x="9" y="1.5" width="6" height="5" rx="1.3"/><rect x="9" y="17" width="6" height="5" rx="1.3"/><rect x="1.5" y="9" width="5" height="6" rx="1.3"/><rect x="17" y="9" width="5" height="6" rx="1.3"/></svg>
+          <h3 class="mt-5 font-display font-normal text-lg text-cream">Design i technologia w służbie światła</h3>
+          <p class="mt-2.5 text-sm text-muted leading-relaxed max-w-[85%]">Zapomnij o kompromisach między wyglądem a funkcją. Szynoprzewody 48V i taśmy LED COB dają pełną swobodę aranżacji — bez utraty odrobiny elegancji.</p>
+        </div>
       </div>
 
-      <div class="glow-card reveal rounded-3xl border border-white/[0.06] bg-surface p-7">
-        <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M12 2 15 12 12 22 9 12Z"/></svg>
-        <h3 class="mt-5 font-display font-normal text-lg text-cream">Eksperci od projektu po realizację</h3>
-        <p class="mt-2.5 text-sm text-muted leading-relaxed">Nie zostawiamy Cię samego na żadnym etapie. Doradztwo, projekt, montaż, serwis — jeden zespół, który zna Twój projekt od podszewki.</p>
+      <div class="glow-card reveal rounded-3xl border border-white/[0.06] bg-surface p-7 overflow-hidden">
+        <img src="assets/bento/recessed-spot.png" alt="" aria-hidden="true" class="bento-img -top-4 -right-5 w-20 opacity-45 rotate-[10deg]">
+        <div class="relative z-10">
+          <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M12 2 15 12 12 22 9 12Z"/></svg>
+          <h3 class="mt-5 font-display font-normal text-lg text-cream">Eksperci od projektu po realizację</h3>
+          <p class="mt-2.5 text-sm text-muted leading-relaxed">Nie zostawiamy Cię samego na żadnym etapie. Doradztwo, projekt, montaż, serwis — jeden zespół, który zna Twój projekt od podszewki.</p>
+        </div>
       </div>
 
-      <div class="glow-card reveal rounded-3xl border border-white/[0.06] bg-surface p-7">
-        <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M6 3h12l4 5.5L12 21 2 8.5 6 3Z"/></svg>
-        <h3 class="mt-5 font-display font-normal text-lg text-cream">Luksus, który świeci pełnym blaskiem</h3>
-        <p class="mt-2.5 text-sm text-muted leading-relaxed">Mosiądz, kryształ, detal na najwyższym poziomie — nasze żyrandole to nie dodatek do wnętrza, to jego bezsprzeczna gwiazda.</p>
+      <div class="glow-card reveal rounded-3xl border border-white/[0.06] bg-surface p-7 overflow-hidden">
+        <img src="assets/bento/flush-disc.png" alt="" aria-hidden="true" class="bento-img -bottom-4 -left-4 w-36 opacity-70 rotate-[8deg]">
+        <div class="relative z-10">
+          <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M6 3h12l4 5.5L12 21 2 8.5 6 3Z"/></svg>
+          <h3 class="mt-5 font-display font-normal text-lg text-cream">Luksus, który świeci pełnym blaskiem</h3>
+          <p class="mt-2.5 text-sm text-muted leading-relaxed">Mosiądz, kryształ, detal na najwyższym poziomie — nasze żyrandole to nie dodatek do wnętrza, to jego bezsprzeczna gwiazda.</p>
+        </div>
       </div>
 
-      <div class="glow-card reveal lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7">
-        <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M12 2.5 20 7v10l-8 4.5L4 17V7Z"/></svg>
-        <h3 class="mt-5 font-display font-normal text-lg text-cream">Precyzja światła — perfekcja wnętrza</h3>
-        <p class="mt-2.5 text-sm text-muted leading-relaxed">Zero olśnienia. Zero niepożądanych cieni. Każdy lumen jest tam, gdzie ma być — bo w BMT liczy się każdy detal.</p>
+      <div class="glow-card reveal lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7 overflow-hidden">
+        <img src="assets/bento/double-cylinder-spot.png" alt="" aria-hidden="true" class="bento-img -top-6 -left-6 w-24 opacity-50 rotate-[-12deg]">
+        <div class="relative z-10">
+          <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M12 2.5 20 7v10l-8 4.5L4 17V7Z"/></svg>
+          <h3 class="mt-5 font-display font-normal text-lg text-cream">Precyzja światła — perfekcja wnętrza</h3>
+          <p class="mt-2.5 text-sm text-muted leading-relaxed max-w-[85%]">Zero olśnienia. Zero niepożądanych cieni. Każdy lumen jest tam, gdzie ma być — bo w BMT liczy się każdy detal.</p>
+        </div>
       </div>
 
-      <div class="glow-card reveal lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7">
-        <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M11 2l1.6 5.6L18 9l-5.4 1.4L11 16l-1.6-5.6L4 9l5.4-1.4L11 2Z"/><path d="M18.5 13.5l.7 2.3 2.3.7-2.3.7-.7 2.3-.7-2.3-2.3-.7 2.3-.7.7-2.3Z"/></svg>
-        <h3 class="mt-5 font-display font-normal text-lg text-cream">Kreujemy wnętrza i przestrzenie światłem</h3>
-        <p class="mt-2.5 text-sm text-muted leading-relaxed">Sama architektura nie wystarczy, żeby wywołać emocje. Nowoczesne taśmy LED i inteligentne sterowanie budują atmosferę, którą się czuje, nie tylko widzi.</p>
+      <div class="glow-card reveal lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7 overflow-hidden">
+        <img src="assets/bento/slim-pendant.png" alt="" aria-hidden="true" class="bento-img -bottom-3 right-10 w-16 opacity-70 rotate-[4deg]">
+        <div class="relative z-10">
+          <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M11 2l1.6 5.6L18 9l-5.4 1.4L11 16l-1.6-5.6L4 9l5.4-1.4L11 2Z"/><path d="M18.5 13.5l.7 2.3 2.3.7-2.3.7-.7 2.3-.7-2.3-2.3-.7 2.3-.7.7-2.3Z"/></svg>
+          <h3 class="mt-5 font-display font-normal text-lg text-cream">Kreujemy wnętrza i przestrzenie światłem</h3>
+          <p class="mt-2.5 text-sm text-muted leading-relaxed max-w-[85%]">Sama architektura nie wystarczy, żeby wywołać emocje. Nowoczesne taśmy LED i inteligentne sterowanie budują atmosferę, którą się czuje, nie tylko widzi.</p>
+        </div>
       </div>
 
     </div>
@@ -578,9 +601,9 @@
 
     <div id="insp-track" class="reveal flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-2">
 
-      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl placeholder-photo border border-white/[0.06] relative overflow-hidden group">
-        <span class="absolute top-5 left-5 text-[10px] tracking-[0.2em] uppercase text-cream/30">Fotografia realizacji</span>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/10 to-transparent"></div>
+      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl border border-white/[0.06] relative overflow-hidden group">
+        <img src="assets/applications/showroom.jpg" alt="Recepcja butiku z oprawami wpuszczanymi BMT" class="absolute inset-0 w-full h-full object-cover object-[50%_30%] transition duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-black/5"></div>
         <div class="absolute inset-x-0 bottom-0 p-6">
           <h3 class="font-display font-normal text-xl text-cream">Biura i showroomy</h3>
           <p class="mt-3 text-sm text-cream/70 leading-relaxed">Zgodność z normą fotobiologiczną EN 62471 i niski współczynnik olśnienia UGR. Linie LEGACY 4X wprowadzają spójny charakter do przestrzeni biurowych.</p>
@@ -591,9 +614,9 @@
         </div>
       </article>
 
-      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl placeholder-photo border border-white/[0.06] relative overflow-hidden group">
-        <span class="absolute top-5 left-5 text-[10px] tracking-[0.2em] uppercase text-cream/30">Fotografia realizacji</span>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/10 to-transparent"></div>
+      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl border border-white/[0.06] relative overflow-hidden group">
+        <img src="assets/applications/lazienka-spa.jpg" alt="Luksusowa łazienka z podświetlanym lustrem i downlightami BMT" class="absolute inset-0 w-full h-full object-cover object-[50%_25%] transition duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-black/5"></div>
         <div class="absolute inset-x-0 bottom-0 p-6">
           <h3 class="font-display font-normal text-xl text-cream">Łazienki i strefy SPA</h3>
           <p class="mt-3 text-sm text-cream/70 leading-relaxed">Punkty świetlne BEE IP54 i taśmy LED Flex IP67 gwarantują odporność na parę i zachlapania bez utraty elegancji.</p>
@@ -604,28 +627,41 @@
         </div>
       </article>
 
-      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl placeholder-photo border border-white/[0.06] relative overflow-hidden group">
-        <span class="absolute top-5 left-5 text-[10px] tracking-[0.2em] uppercase text-cream/30">Fotografia realizacji</span>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/10 to-transparent"></div>
+      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl border border-white/[0.06] relative overflow-hidden group">
+        <img src="assets/applications/restauracja.jpg" alt="Restauracja z lampami wiszącymi BMT nad stolikami" class="absolute inset-0 w-full h-full object-cover object-[50%_35%] transition duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-black/5"></div>
         <div class="absolute inset-x-0 bottom-0 p-6">
-          <h3 class="font-display font-normal text-xl text-cream">Elewacje i ogrody</h3>
-          <p class="mt-3 text-sm text-cream/70 leading-relaxed">Oprawy IP65 z malowanego proszkowo aluminium podkreślają bryłę budynku i architekturę ogrodu po zmroku.</p>
+          <h3 class="font-display font-normal text-xl text-cream">Restauracje i lokale gastronomiczne</h3>
+          <p class="mt-3 text-sm text-cream/70 leading-relaxed">Ciepła scena światła buduje klimat przy stoliku, a ściemnianie DALI pozwala płynnie przejść od serwisu śniadaniowego po nastrojowy wieczór.</p>
           <div class="mt-4 flex flex-wrap gap-2">
-            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Facade Illumination</span>
-            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">IP65</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Hospitality Lighting</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Sceny DALI</span>
           </div>
         </div>
       </article>
 
-      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl placeholder-photo border border-white/[0.06] relative overflow-hidden group">
-        <span class="absolute top-5 left-5 text-[10px] tracking-[0.2em] uppercase text-cream/30">Fotografia realizacji</span>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/10 to-transparent"></div>
+      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl border border-white/[0.06] relative overflow-hidden group">
+        <img src="assets/applications/kuchnia.jpg" alt="Kuchnia z linią oświetleniową M2 LINE nad wyspą" class="absolute inset-0 w-full h-full object-cover object-[50%_30%] transition duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-black/5"></div>
         <div class="absolute inset-x-0 bottom-0 p-6">
           <h3 class="font-display font-normal text-xl text-cream">Kuchnia i jadalnia</h3>
           <p class="mt-3 text-sm text-cream/70 leading-relaxed">Oprawy M2 LINE zapewniają bezcieniowe oświetlenie stref roboczych, a CRI 90–97 oddaje naturalne barwy potraw.</p>
           <div class="mt-4 flex flex-wrap gap-2">
             <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Precyzja nad blatem</span>
             <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Klimat nad stołem</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl border border-white/[0.06] relative overflow-hidden group">
+        <img src="assets/applications/salon.jpg" alt="Salon i strefa dzienna z oświetleniem szynowym BMT" class="absolute inset-0 w-full h-full object-cover object-[50%_30%] transition duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-black/5"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6">
+          <h3 class="font-display font-normal text-xl text-cream">Salony i strefy dzienne</h3>
+          <p class="mt-3 text-sm text-cream/70 leading-relaxed">Szynoprzewód 48V łączony z punktowymi oprawami buduje warstwowe światło, które dzień w dzień dopasowuje się do rytmu domowników.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Warstwowe światło</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Szynoprzewód 48V</span>
           </div>
         </div>
       </article>
