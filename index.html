@@ -227,6 +227,18 @@
     100% { opacity: 0; transform: scale(1.35); }
   }
 
+  .cursor-light {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 45;
+    mix-blend-mode: screen;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background: radial-gradient(420px circle at var(--cx, 50%) var(--cy, 50%), rgba(242,153,74,0.16), rgba(242,153,74,0.05) 45%, transparent 72%);
+  }
+  .cursor-light.is-active { opacity: 1; }
+
   .particles-layer { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 40; }
   .particle {
     position: absolute;
@@ -283,6 +295,7 @@
 <body class="bg-ink text-cream font-sans antialiased selection:bg-amber/30 selection:text-cream">
 
 <div class="particles-layer" id="particles" aria-hidden="true"></div>
+<div class="cursor-light" id="cursor-light" aria-hidden="true"></div>
 
 <!-- ================= HEADER ================= -->
 <header id="header" class="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
@@ -831,6 +844,34 @@
 
 <script>
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Cursor "flashlight" glow — only for real mice (not touch), respects reduced motion
+  if (!prefersReducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const cursorLight = document.getElementById('cursor-light');
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let curX = targetX;
+    let curY = targetY;
+
+    window.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      cursorLight.classList.add('is-active');
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', () => {
+      cursorLight.classList.remove('is-active');
+    });
+
+    const animateCursorLight = () => {
+      curX += (targetX - curX) * 0.12;
+      curY += (targetY - curY) * 0.12;
+      cursorLight.style.setProperty('--cx', `${curX}px`);
+      cursorLight.style.setProperty('--cy', `${curY}px`);
+      requestAnimationFrame(animateCursorLight);
+    };
+    requestAnimationFrame(animateCursorLight);
+  }
 
   // Ambient light particles
   if (!prefersReducedMotion) {
