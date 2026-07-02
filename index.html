@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMteam — Światło, które dostosowuje się do Ciebie</title>
+<meta name="description" content="BMteam (geometry of light) — systemy oświetleniowe premium dla architektów, projektantów i inwestorów. Szynoprzewody 48V, taśmy LED COB, DALI, KNX, TUYA.">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#040302',
+          surface: '#0c0a08',
+          surface2: '#151210',
+          gold: '#d9a24b',
+          amber: '#f2994a',
+          ember: '#d6390f',
+          coral: '#ff7a52',
+          kelvin: '#9fd8f5',
+          kelvindeep: '#4a9fd4',
+          cream: '#f5f1ea',
+          muted: '#a39a8d',
+        },
+        fontFamily: {
+          sans: ['"General Sans"', 'sans-serif'],
+          display: ['"Clash Display"', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #040302; }
+
+  .bg-dot-grid {
+    background-image: radial-gradient(rgba(245,241,234,0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .glow-radial {
+    background: radial-gradient(60% 50% at 50% 40%, rgba(242,153,74,0.28), rgba(242,153,74,0) 70%);
+  }
+
+  .glow-card { position: relative; isolation: isolate; --spot: 242,153,74; }
+  .glow-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(220px circle at var(--x, 50%) var(--y, 50%), rgba(var(--spot), 0.16), transparent 70%);
+    opacity: 0;
+    transition: opacity .4s ease;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .glow-card:hover::before { opacity: 1; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { transition: none; opacity: 1; transform: none; }
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .header-blur { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+
+  .text-shield { text-shadow: 0 2px 20px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.4); }
+
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid #f2994a;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .btn-amber {
+    background: linear-gradient(135deg, #f2994a, #d6390f);
+  }
+
+  .placeholder-photo {
+    background:
+      radial-gradient(70% 60% at 30% 20%, rgba(242,153,74,0.14), transparent 60%),
+      linear-gradient(160deg, #151210, #0a0806 60%, #000 100%);
+  }
+
+  .placeholder-product {
+    background: radial-gradient(circle at 50% 42%, #ded8cc 0%, #2b2724 55%, #000 100%);
+  }
+
+  /* Light animations */
+  @keyframes power-on {
+    0% { opacity: 0; transform: scale(0.4); }
+    60% { opacity: 1; }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .hero-aurora {
+    filter: blur(50px);
+    animation: power-on 1.6s ease-out;
+  }
+  .aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    will-change: transform;
+  }
+  .aurora-blob.b1 {
+    width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
+    top: -12%; left: 4%;
+    background: radial-gradient(circle, rgba(242,153,74,0.9), transparent 70%);
+    animation: aurora-drift-1 14s ease-in-out infinite;
+  }
+  .aurora-blob.b2 {
+    width: 46vw; height: 46vw; max-width: 560px; max-height: 560px;
+    top: 18%; right: 2%;
+    background: radial-gradient(circle, rgba(217,162,75,0.85), transparent 70%);
+    animation: aurora-drift-2 18s ease-in-out infinite;
+  }
+  .aurora-blob.b3 {
+    width: 40vw; height: 40vw; max-width: 460px; max-height: 460px;
+    bottom: -16%; left: 32%;
+    background: radial-gradient(circle, rgba(159,216,245,0.8), transparent 70%);
+    animation: aurora-drift-3 11s ease-in-out infinite;
+  }
+  @keyframes aurora-drift-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(7%, 10%) scale(1.18); }
+  }
+  @keyframes aurora-drift-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-9%, 7%) scale(0.88); }
+  }
+  @keyframes aurora-drift-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(6%, -8%) scale(1.12); }
+  }
+
+  .beacon-sweep {
+    position: absolute;
+    inset: -30%;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(255,255,255,0.16) 30deg, transparent 80deg, transparent 360deg);
+    mix-blend-mode: screen;
+    animation: beacon-rotate 9s linear infinite;
+  }
+  @keyframes beacon-rotate {
+    to { transform: rotate(360deg); }
+  }
+
+  .scroll-cue svg { animation: scroll-bounce 1.8s ease-in-out infinite; }
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); opacity: .5; }
+    50% { transform: translateY(6px); opacity: 1; }
+  }
+
+  .shimmer-btn { position: relative; overflow: hidden; }
+  .shimmer-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -60%;
+    width: 40%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: skewX(-20deg);
+    transition: left .7s ease;
+  }
+  .shimmer-btn:hover::after { left: 130%; }
+
+  .led-line {
+    height: 1px;
+    overflow: hidden;
+    background: linear-gradient(90deg, transparent, rgba(242,153,74,0.55), transparent);
+  }
+  .led-line::after {
+    content: '';
+    position: relative;
+    display: block;
+    top: 0; left: -30%;
+    width: 30%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent);
+    animation: led-travel 5s ease-in-out infinite;
+  }
+  @keyframes led-travel {
+    0% { left: -30%; }
+    100% { left: 130%; }
+  }
+
+  .pulse-dot {
+    animation: dot-pulse 3.2s ease-in-out infinite;
+  }
+  @keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 0 50px 18px rgba(242,153,74,0.45); }
+    50% { box-shadow: 0 0 70px 26px rgba(242,153,74,0.65); }
+  }
+
+  .spark-twinkle { animation: twinkle 3.6s ease-in-out infinite; }
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(0.85); }
+  }
+
+  .badge-pulse { position: relative; }
+  .badge-pulse::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(214,57,15,0.6);
+    animation: badge-ring 2.4s ease-out infinite;
+  }
+  @keyframes badge-ring {
+    0% { opacity: 0.7; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.35); }
+  }
+
+  .particles-layer { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 40; }
+  .particle {
+    position: absolute;
+    bottom: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,153,74,0.95), rgba(242,153,74,0) 70%);
+    animation: particle-float linear infinite;
+  }
+  @keyframes particle-float {
+    0% { transform: translate(0, 0); opacity: 0; }
+    12% { opacity: var(--peak, 0.6); }
+    88% { opacity: var(--peak, 0.6); }
+    100% { transform: translate(var(--drift, 30px), -115vh); opacity: 0; }
+  }
+
+  /* Marquee */
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 26s linear infinite;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { overflow-x: auto; }
+    .marquee-track { animation: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-aurora,
+    .aurora-blob,
+    .beacon-sweep,
+    .scroll-cue svg,
+    .shimmer-btn::after,
+    .led-line::after,
+    .pulse-dot,
+    .spark-twinkle,
+    .badge-pulse::before,
+    .particle {
+      animation: none !important;
+    }
+  }
+</style>
+</head>
+
+<body class="bg-ink text-cream font-sans antialiased selection:bg-amber/30 selection:text-cream">
+
+<div class="particles-layer" id="particles" aria-hidden="true"></div>
+
+<!-- ================= HEADER ================= -->
+<header id="header" class="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-center justify-between h-20">
+      <a href="#hero" class="flex items-center group">
+        <img src="assets/logo-bmt.svg" alt="BMteam" class="h-7 w-auto transition-transform duration-300 group-hover:scale-105">
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-10 font-display text-sm text-cream/80">
+        <a href="#o-nas" class="hover:text-amber transition-colors">O nas</a>
+        <a href="#proces" class="hover:text-amber transition-colors">Proces</a>
+        <a href="#inspiracje" class="hover:text-amber transition-colors">Inspiracje</a>
+        <a href="#produkty" class="hover:text-amber transition-colors">Produkty</a>
+        <a href="#kontakt" class="hover:text-amber transition-colors">Kontakt</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#kontakt" class="hidden sm:inline-flex items-center gap-1.5 btn-amber shimmer-btn text-ink font-display font-normal text-sm px-5 py-2.5 rounded-full hover:brightness-110 transition">
+          Strefa Architekta
+        </a>
+        <button id="menu-toggle" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-white/10 text-cream" aria-label="Otwórz menu" aria-expanded="false">
+          <svg id="icon-open" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="icon-close" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-white/5 bg-ink/95 header-blur">
+    <nav class="flex flex-col px-6 py-6 gap-5 font-display text-base">
+      <a href="#o-nas" class="mobile-link text-cream/85">O nas</a>
+      <a href="#proces" class="mobile-link text-cream/85">Proces</a>
+      <a href="#inspiracje" class="mobile-link text-cream/85">Inspiracje</a>
+      <a href="#produkty" class="mobile-link text-cream/85">Produkty</a>
+      <a href="#kontakt" class="mobile-link text-cream/85">Kontakt</a>
+      <a href="#kontakt" class="mobile-link btn-amber shimmer-btn text-ink text-center font-normal px-5 py-3 rounded-full mt-2">Strefa Architekta</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="hero" class="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-20">
+  <div class="hero-aurora absolute inset-0" aria-hidden="true">
+    <span class="aurora-blob b1"></span>
+    <span class="aurora-blob b2"></span>
+    <span class="aurora-blob b3"></span>
+    <span class="beacon-sweep"></span>
+  </div>
+  <div class="absolute inset-0 bg-dot-grid opacity-40 [mask-image:radial-gradient(60%_50%_at_50%_35%,black,transparent)]"></div>
+
+  <div class="relative max-w-4xl mx-auto px-6 text-center reveal">
+    <span class="relative badge-pulse inline-flex items-center gap-2.5 rounded-full border border-ember/40 bg-ember/10 pl-1.5 pr-4 py-1.5 text-xs font-display tracking-wide text-cream mb-8">
+      <span class="font-semibold text-ink bg-gradient-to-r from-amber to-ember px-3 py-1 rounded-full">Nowa marka</span>
+      Sprawdzone technologie
+    </span>
+
+    <h1 class="text-shield font-display font-normal text-4xl sm:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-cream">
+      Światło, które <span class="font-semibold bg-gradient-to-r from-amber via-cream to-kelvin bg-clip-text text-transparent">dostosowuje się</span><br class="hidden sm:block"> do Ciebie.
+    </h1>
+
+    <p class="text-shield mt-6 text-lg sm:text-xl text-muted font-display">
+      Magia i klimat zamknięte w detalu.
+    </p>
+
+    <p class="text-shield mt-4 max-w-xl mx-auto text-sm sm:text-base text-cream/75">
+      Zamieniamy zwykłe wnętrza w przestrzenie, które zapadają w pamięć — kompleksowo, od pierwszego pomysłu po gotową realizację.
+    </p>
+
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#o-nas" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 btn-amber shimmer-btn text-ink font-display font-normal px-7 py-3.5 rounded-full hover:brightness-110 transition">
+        Poznaj nas
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+      <a href="#produkty" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-cream/20 text-cream font-display font-normal px-7 py-3.5 rounded-full hover:bg-white/5 transition">
+        Sprawdź nowości
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-cue hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-cream/75">
+    Przewiń
+    <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+</section>
+
+<!-- ================= STATYSTYKI ================= -->
+<section class="relative py-14 px-6 border-y border-white/[0.06]">
+  <div class="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 reveal">
+    <!-- TODO: podmienić na rzeczywiste dane firmy -->
+    <div class="text-center">
+      <p class="font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">15+</p>
+      <p class="mt-1 text-xs sm:text-sm text-muted">lat doświadczenia</p>
+    </div>
+    <div class="text-center">
+      <p class="font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">500+</p>
+      <p class="mt-1 text-xs sm:text-sm text-muted">zrealizowanych projektów</p>
+    </div>
+    <div class="text-center">
+      <p class="font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">98%</p>
+      <p class="mt-1 text-xs sm:text-sm text-muted">zadowolonych klientów</p>
+    </div>
+    <div class="text-center">
+      <p class="font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">30+</p>
+      <p class="mt-1 text-xs sm:text-sm text-muted">miast w Polsce</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEKTORY ================= -->
+<section class="relative py-14 px-6 border-b border-white/[0.06]">
+  <div class="max-w-6xl mx-auto reveal">
+    <p class="text-center text-xs tracking-[0.2em] uppercase text-muted mb-6">Realizujemy kompleksowe oświetlenie dla:</p>
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-display text-sm text-cream/70">
+      <span>Hoteli</span>
+      <span class="text-white/15">·</span>
+      <span>Banków</span>
+      <span class="text-white/15">·</span>
+      <span>Restauracji</span>
+      <span class="text-white/15">·</span>
+      <span>Salonów samochodowych</span>
+      <span class="text-white/15">·</span>
+      <span>Zakładów produkcyjnych</span>
+      <span class="text-white/15">·</span>
+      <span>Klinik i gabinetów lekarskich</span>
+      <span class="text-white/15">·</span>
+      <span>Placówek oświatowych</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KORZYŚCI (BENTO) ================= -->
+<section id="o-nas" class="relative py-28 px-6">
+  <div class="absolute top-0 inset-x-0 led-line"></div>
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl reveal">
+      <span class="text-xs font-display tracking-[0.25em] uppercase text-gold">Korzyści</span>
+      <h2 class="mt-4 font-display font-normal text-3xl sm:text-4xl leading-tight text-cream">
+        Dlaczego architekci i inwestorzy wybierają BMT? Sześć powodów, które robią różnicę w każdym projekcie.
+      </h2>
+    </div>
+
+    <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <div class="glow-card reveal sm:col-span-2 lg:col-span-2 lg:row-span-2 rounded-3xl border border-white/[0.06] bg-gradient-to-br from-surface to-surface2 p-8 lg:p-10 flex flex-col justify-between">
+        <div>
+          <svg viewBox="0 0 24 24" class="w-9 h-9 text-amber" fill="currentColor"><path d="M12 3 18 9.5 12 21 6 9.5Z"/></svg>
+          <h3 class="mt-6 font-display font-normal text-2xl text-cream">Światło, które definiuje przestrzeń</h3>
+          <p class="mt-3 text-sm sm:text-base text-muted leading-relaxed max-w-md">Odpowiednie światło potrafi zmienić odbiór całego wnętrza w kilka sekund. Dobieramy temperaturę barwową i natężenie tak, by Twoja przestrzeń żyła razem z porą dnia — i zawsze robiła wrażenie.</p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-2">
+          <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">2700–6500K</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Ściemnianie płynne</span>
+        </div>
+      </div>
+
+      <div class="glow-card reveal lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7">
+        <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><rect x="9" y="9" width="6" height="6" rx="1.3"/><rect x="9" y="1.5" width="6" height="5" rx="1.3"/><rect x="9" y="17" width="6" height="5" rx="1.3"/><rect x="1.5" y="9" width="5" height="6" rx="1.3"/><rect x="17" y="9" width="5" height="6" rx="1.3"/></svg>
+        <h3 class="mt-5 font-display font-normal text-lg text-cream">Design i technologia w służbie światła</h3>
+        <p class="mt-2.5 text-sm text-muted leading-relaxed">Zapomnij o kompromisach między wyglądem a funkcją. Szynoprzewody 48V i taśmy LED COB dają pełną swobodę aranżacji — bez utraty odrobiny elegancji.</p>
+      </div>
+
+      <div class="glow-card reveal rounded-3xl border border-white/[0.06] bg-surface p-7">
+        <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M12 2 15 12 12 22 9 12Z"/></svg>
+        <h3 class="mt-5 font-display font-normal text-lg text-cream">Eksperci od projektu po realizację</h3>
+        <p class="mt-2.5 text-sm text-muted leading-relaxed">Nie zostawiamy Cię samego na żadnym etapie. Doradztwo, projekt, montaż, serwis — jeden zespół, który zna Twój projekt od podszewki.</p>
+      </div>
+
+      <div class="glow-card reveal rounded-3xl border border-white/[0.06] bg-surface p-7">
+        <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M6 3h12l4 5.5L12 21 2 8.5 6 3Z"/></svg>
+        <h3 class="mt-5 font-display font-normal text-lg text-cream">Luksus, który świeci pełnym blaskiem</h3>
+        <p class="mt-2.5 text-sm text-muted leading-relaxed">Mosiądz, kryształ, detal na najwyższym poziomie — nasze żyrandole to nie dodatek do wnętrza, to jego bezsprzeczna gwiazda.</p>
+      </div>
+
+      <div class="glow-card reveal lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7">
+        <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M12 2.5 20 7v10l-8 4.5L4 17V7Z"/></svg>
+        <h3 class="mt-5 font-display font-normal text-lg text-cream">Precyzja światła — perfekcja wnętrza</h3>
+        <p class="mt-2.5 text-sm text-muted leading-relaxed">Zero olśnienia. Zero niepożądanych cieni. Każdy lumen jest tam, gdzie ma być — bo w BMT liczy się każdy detal.</p>
+      </div>
+
+      <div class="glow-card reveal lg:col-span-2 rounded-3xl border border-white/[0.06] bg-surface p-7">
+        <svg viewBox="0 0 24 24" class="w-7 h-7 text-amber" fill="currentColor"><path d="M11 2l1.6 5.6L18 9l-5.4 1.4L11 16l-1.6-5.6L4 9l5.4-1.4L11 2Z"/><path d="M18.5 13.5l.7 2.3 2.3.7-2.3.7-.7 2.3-.7-2.3-2.3-.7 2.3-.7.7-2.3Z"/></svg>
+        <h3 class="mt-5 font-display font-normal text-lg text-cream">Kreujemy wnętrza i przestrzenie światłem</h3>
+        <p class="mt-2.5 text-sm text-muted leading-relaxed">Sama architektura nie wystarczy, żeby wywołać emocje. Nowoczesne taśmy LED i inteligentne sterowanie budują atmosferę, którą się czuje, nie tylko widzi.</p>
+      </div>
+
+    </div>
+
+    <!-- Compatibility marquee -->
+    <div class="mt-16 reveal">
+      <p class="text-center text-xs tracking-[0.2em] uppercase text-muted mb-7">Bez wymiany systemu, który już masz — integrujemy się z:</p>
+      <div class="marquee">
+        <div class="marquee-track">
+          <div class="flex items-center gap-14 pr-14">
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">DALI</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">KNX</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">LUTRON</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">TUYA</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">ZIGBEE</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">BLUETOOTH</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">SIEĆ MESH</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">ALEXA</span>
+          </div>
+          <div class="flex items-center gap-14 pr-14" aria-hidden="true">
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">DALI</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">KNX</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">LUTRON</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">TUYA</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">ZIGBEE</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">BLUETOOTH</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">SIEĆ MESH</span>
+            <span class="text-muted hover:text-cream transition font-display font-normal tracking-wider text-sm">ALEXA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JAK PRACUJEMY ================= -->
+<section id="proces" class="relative py-28 px-6 bg-surface/40">
+  <div class="absolute top-0 inset-x-0 led-line"></div>
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-3xl mb-16 reveal">
+      <span class="text-xs font-display tracking-[0.25em] uppercase text-gold">Proces</span>
+      <h2 class="mt-4 font-display font-normal text-3xl sm:text-4xl leading-tight text-cream">Jak pracujemy — od pomysłu do włącznika</h2>
+    </div>
+
+    <div class="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-10 reveal">
+
+      <div class="relative">
+        <span class="font-display font-normal text-4xl text-amber/30">01</span>
+        <svg viewBox="0 0 24 24" class="mt-4 w-8 h-8 text-amber" fill="currentColor"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4 4v-4H6.5A2.5 2.5 0 0 1 4 13.5Z"/></svg>
+        <h3 class="mt-4 font-display font-normal text-lg text-cream">Konsultacja</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Zaczynamy od rozmowy, nie od katalogu. Poznajemy Twoje potrzeby, styl życia i wnętrze — dopiero potem proponujemy technologię.</p>
+      </div>
+
+      <div class="relative">
+        <span class="font-display font-normal text-4xl text-amber/30">02</span>
+        <svg viewBox="0 0 24 24" class="mt-4 w-8 h-8 text-amber" fill="currentColor"><rect x="3" y="2" width="13" height="18" rx="1.5"/><rect x="15" y="14" width="7" height="7" rx="1.5"/></svg>
+        <h3 class="mt-4 font-display font-normal text-lg text-cream">Projekt iluminacji</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Zero zgadywania na budowie. Dostajesz szczegółowy plan punktów świetlnych, barw i sterowania, zanim padnie pierwszy kabel.</p>
+      </div>
+
+      <div class="relative">
+        <span class="font-display font-normal text-4xl text-amber/30">03</span>
+        <svg viewBox="0 0 24 24" class="mt-4 w-8 h-8 text-amber" fill="currentColor"><rect x="2" y="10.5" width="20" height="3" rx="1.5"/><rect x="10.5" y="2" width="3" height="20" rx="1.5"/></svg>
+        <h3 class="mt-4 font-display font-normal text-lg text-cream">Montaż</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Montujemy dokładnie to, co zaprojektowaliśmy — bez niespodzianek, bez bałaganu, z dbałością o każdy centymetr.</p>
+      </div>
+
+      <div class="relative">
+        <span class="font-display font-normal text-4xl text-amber/30">04</span>
+        <svg viewBox="0 0 24 24" class="mt-4 w-8 h-8 text-amber" fill="currentColor"><path d="M12 2 4 5.5v6c0 5 3.4 8.7 8 10.5 4.6-1.8 8-5.5 8-10.5v-6L12 2Z"/></svg>
+        <h3 class="mt-4 font-display font-normal text-lg text-cream">Serwis i wsparcie</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Współpraca nie kończy się na odbiorze. Jesteśmy pod telefonem, gdy chcesz rozbudować system albo masz pytanie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ZASTOSOWANIA / INSPIRACJE ================= -->
+<section id="inspiracje" class="relative py-28 px-6">
+  <div class="absolute top-0 inset-x-0 led-line"></div>
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12 reveal">
+      <div class="max-w-2xl">
+        <span class="text-xs font-display tracking-[0.25em] uppercase text-gold">Zastosowania</span>
+        <h2 class="mt-4 font-display font-normal text-3xl sm:text-4xl leading-tight text-cream">Inspiracje, które zmieniają przestrzeń</h2>
+      </div>
+      <div class="flex gap-3">
+        <button id="insp-prev" aria-label="Poprzednia realizacja" class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-cream hover:bg-white/5 transition">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button id="insp-next" aria-label="Następna realizacja" class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-cream hover:bg-white/5 transition">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="insp-track" class="reveal flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-2">
+
+      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl placeholder-photo border border-white/[0.06] relative overflow-hidden group">
+        <span class="absolute top-5 left-5 text-[10px] tracking-[0.2em] uppercase text-cream/30">Fotografia realizacji</span>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/10 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6">
+          <h3 class="font-display font-normal text-xl text-cream">Biura i showroomy</h3>
+          <p class="mt-3 text-sm text-cream/70 leading-relaxed">Zgodność z normą fotobiologiczną EN 62471 i niski współczynnik olśnienia UGR. Linie LEGACY 4X wprowadzają spójny charakter do przestrzeni biurowych.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Office Lighting</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Commercial Design</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl placeholder-photo border border-white/[0.06] relative overflow-hidden group">
+        <span class="absolute top-5 left-5 text-[10px] tracking-[0.2em] uppercase text-cream/30">Fotografia realizacji</span>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/10 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6">
+          <h3 class="font-display font-normal text-xl text-cream">Łazienki i strefy SPA</h3>
+          <p class="mt-3 text-sm text-cream/70 leading-relaxed">Punkty świetlne BEE IP54 i taśmy LED Flex IP67 gwarantują odporność na parę i zachlapania bez utraty elegancji.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Waterproof LED</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">IP54</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl placeholder-photo border border-white/[0.06] relative overflow-hidden group">
+        <span class="absolute top-5 left-5 text-[10px] tracking-[0.2em] uppercase text-cream/30">Fotografia realizacji</span>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/10 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6">
+          <h3 class="font-display font-normal text-xl text-cream">Elewacje i ogrody</h3>
+          <p class="mt-3 text-sm text-cream/70 leading-relaxed">Oprawy IP65 z malowanego proszkowo aluminium podkreślają bryłę budynku i architekturę ogrodu po zmroku.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Facade Illumination</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">IP65</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="snap-start shrink-0 w-[80%] sm:w-[380px] aspect-[3/4] rounded-3xl placeholder-photo border border-white/[0.06] relative overflow-hidden group">
+        <span class="absolute top-5 left-5 text-[10px] tracking-[0.2em] uppercase text-cream/30">Fotografia realizacji</span>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/10 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6">
+          <h3 class="font-display font-normal text-xl text-cream">Kuchnia i jadalnia</h3>
+          <p class="mt-3 text-sm text-cream/70 leading-relaxed">Oprawy M2 LINE zapewniają bezcieniowe oświetlenie stref roboczych, a CRI 90–97 oddaje naturalne barwy potraw.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Precyzja nad blatem</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-amber/25 text-gold">Klimat nad stołem</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= OPINIE KLIENTÓW ================= -->
+<section class="relative py-28 px-6 bg-surface/40">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <div class="inline-flex items-center gap-2 text-amber mb-3">
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+        <!-- TODO: podmienić na rzeczywistą ocenę i liczbę opinii -->
+        <span class="text-sm font-display font-normal text-cream ml-1">4.9/5</span>
+        <span class="text-sm text-muted">z 210+ opinii</span>
+      </div>
+      <h2 class="font-display font-normal text-3xl sm:text-4xl text-cream">Przestrzeń odmieniona światłem</h2>
+      <p class="mt-4 text-muted">Setki klientów, jeden wspólny mianownik: światło, które odmieniło ich przestrzeń na dobre.</p>
+    </div>
+
+    <div class="relative mt-14">
+      <div id="testimonial-track" class="flex gap-5 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-2">
+
+        <article class="snap-start shrink-0 w-[85%] sm:w-[360px] rounded-2xl border border-white/[0.06] bg-surface p-7 reveal">
+          <div class="flex gap-1 text-amber">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+          </div>
+          <p class="mt-5 text-sm text-cream/80 leading-relaxed">„Montaż magnetyczny bez użycia narzędzi to poziom, którego nie spodziewałem się po systemie oświetleniowym. Zero migotania, pełna kontrola nad każdym punktem światła.”</p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-amber flex items-center justify-center text-ink font-display font-normal text-sm">DN</div>
+            <div>
+              <p class="text-sm font-display font-normal text-cream">Dawid N.</p>
+              <p class="text-xs text-muted">Kraków</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="snap-start shrink-0 w-[85%] sm:w-[360px] rounded-2xl border border-white/[0.06] bg-surface p-7 reveal">
+          <div class="flex gap-1 text-amber">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+          </div>
+          <p class="mt-5 text-sm text-cream/80 leading-relaxed">„Widać pasję do detalu na każdym etapie — od doboru temperatury barwowej po finalny montaż. Nasze biuro zyskało zupełnie inny charakter.”</p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-amber flex items-center justify-center text-ink font-display font-normal text-sm">KR</div>
+            <div>
+              <p class="text-sm font-display font-normal text-cream">Karolina R.</p>
+              <p class="text-xs text-muted">Warszawa</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="snap-start shrink-0 w-[85%] sm:w-[360px] rounded-2xl border border-white/[0.06] bg-surface p-7 reveal">
+          <div class="flex gap-1 text-amber">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+          </div>
+          <p class="mt-5 text-sm text-cream/80 leading-relaxed">„Oświetlenie elewacji i ogrodu zrobione przez BMT zmieniło odbiór całej posesji po zmroku. Precyzja wykonania na najwyższym poziomie.”</p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-amber flex items-center justify-center text-ink font-display font-normal text-sm">WS</div>
+            <div>
+              <p class="text-sm font-display font-normal text-cream">Witold S.</p>
+              <p class="text-xs text-muted">Wręczyca Wielka</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="snap-start shrink-0 w-[85%] sm:w-[360px] rounded-2xl border border-white/[0.06] bg-surface p-7 reveal">
+          <div class="flex gap-1 text-amber">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.6-5 4.4 1.5 6.5L12 16.8 5.9 20l1.5-6.5-5-4.4 6.6-.6L12 2.5Z"/></svg>
+          </div>
+          <p class="mt-5 text-sm text-cream/80 leading-relaxed">„Profesjonalne doradztwo techniczne i realizacja zgodna z projektem co do milimetra. Polecam każdemu, kto szuka czegoś więcej niż standardowe oświetlenie.”</p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-amber flex items-center justify-center text-ink font-display font-normal text-sm">GW</div>
+            <div>
+              <p class="text-sm font-display font-normal text-cream">Grzegorz W.</p>
+              <p class="text-xs text-muted">Legnica</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="flex justify-center gap-3 mt-8">
+        <button id="testi-prev" aria-label="Poprzednia opinia" class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-cream hover:bg-white/5 transition">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button id="testi-next" aria-label="Następna opinia" class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-cream hover:bg-white/5 transition">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLAGOWE TECHNOLOGIE ================= -->
+<section id="produkty" class="relative py-28 px-6">
+  <div class="absolute top-0 inset-x-0 led-line"></div>
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl reveal">
+      <span class="text-xs font-display tracking-[0.25em] uppercase text-gold">Oferta</span>
+      <h2 class="mt-4 font-display font-normal text-3xl sm:text-4xl leading-tight text-cream">Technologie, które kochają nasi klienci</h2>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-3 reveal" id="product-tabs">
+      <button data-index="0" class="product-tab btn-amber text-ink font-display font-normal text-sm px-5 py-2.5 rounded-full transition">M2 Wall Points 6W</button>
+      <button data-index="1" class="product-tab border border-white/15 text-cream/70 font-display font-normal text-sm px-5 py-2.5 rounded-full transition hover:border-amber/40">M2 Line 24W</button>
+      <button data-index="2" class="product-tab border border-white/15 text-cream/70 font-display font-normal text-sm px-5 py-2.5 rounded-full transition hover:border-amber/40">Legacy 4X 15W</button>
+      <button data-index="3" class="product-tab border border-white/15 text-cream/70 font-display font-normal text-sm px-5 py-2.5 rounded-full transition hover:border-amber/40">Moonlight 80W</button>
+      <button data-index="4" class="product-tab border border-white/15 text-cream/70 font-display font-normal text-sm px-5 py-2.5 rounded-full transition hover:border-amber/40">M2 Pendant 7W</button>
+    </div>
+
+    <div class="mt-10 reveal">
+      <div id="product-panel" class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="aspect-square rounded-3xl border border-white/[0.06] relative overflow-hidden">
+          <img class="product-image absolute inset-0 w-full h-full object-cover" src="assets/products/m2-wall-points-6w.png" alt="M2 Wall Points 6W">
+        </div>
+
+        <div>
+          <h3 class="product-name font-display font-normal text-2xl text-cream">M2 WALL POINTS 6W</h3>
+          <p class="product-desc mt-4 text-sm sm:text-base text-muted leading-relaxed">Magnetyczna oprawa punktowa do systemów szynowych M2 48V. Obrotowa głowica z 6 punktami LED pozwala precyzyjnie ukierunkować światło tam, gdzie jest potrzebne.</p>
+
+          <ul class="product-specs mt-6 space-y-3">
+            <li class="flex items-start gap-2.5 text-sm text-cream/80">
+              <svg viewBox="0 0 24 24" class="w-4 h-4 mt-0.5 shrink-0 text-amber" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+              <span>Wysoki współczynnik oddawania barw CRI ≥ 95</span>
+            </li>
+            <li class="flex items-start gap-2.5 text-sm text-cream/80">
+              <svg viewBox="0 0 24 24" class="w-4 h-4 mt-0.5 shrink-0 text-amber" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+              <span>Ściemnianie DALI DT8 CCT, DALI DT6 lub ON/OFF</span>
+            </li>
+            <li class="flex items-start gap-2.5 text-sm text-cream/80">
+              <svg viewBox="0 0 24 24" class="w-4 h-4 mt-0.5 shrink-0 text-amber" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+              <span>Niskonapięciowy system szynowy M2 48V</span>
+            </li>
+            <li class="flex items-start gap-2.5 text-sm text-cream/80">
+              <svg viewBox="0 0 24 24" class="w-4 h-4 mt-0.5 shrink-0 text-amber" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+              <span>Dostępna w kolorze czarnym i białym</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BANNER ================= -->
+<section class="relative py-28 px-6 overflow-hidden bg-surface/40">
+  <div class="absolute top-0 inset-x-0 led-line"></div>
+  <div class="absolute inset-0 glow-radial opacity-70"></div>
+  <div class="relative max-w-3xl mx-auto text-center reveal">
+    <h2 class="text-shield font-display font-normal text-3xl sm:text-4xl lg:text-5xl leading-tight text-cream">Gotowy rozświetlić swoją przestrzeń?</h2>
+    <p class="text-shield mt-5 text-muted max-w-xl mx-auto">Porozmawiajmy o Twoim projekcie, zanim zdecydujesz się na cokolwiek — konsultacja jest bezpłatna i do niczego nie zobowiązuje.</p>
+    <a href="#kontakt" class="mt-8 inline-flex items-center gap-2 btn-amber shimmer-btn text-ink font-display font-normal px-8 py-4 rounded-full hover:brightness-110 transition">
+      Umów bezpłatną konsultację
+      <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="kontakt" class="relative pt-24 pb-10 px-6 overflow-hidden">
+  <div class="absolute top-0 inset-x-0 led-line"></div>
+
+  <div class="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-14">
+
+    <div class="reveal">
+      <img src="assets/logo-bmt.svg" alt="BMteam" class="h-8 w-auto">
+
+      <div class="mt-6 space-y-2 text-sm text-cream/70">
+        <p>ul. Ludowa 109, 42-215 Częstochowa</p>
+        <p><!-- TODO: uzupełnić rzeczywisty numer telefonu -->+48 [numer telefonu]</p>
+        <p><!-- TODO: uzupełnić godziny otwarcia -->Pon–Pt: [godziny otwarcia]</p>
+        <p><a href="mailto:biuro@bmteam.pl" class="hover:text-amber transition">biuro@bmteam.pl</a></p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h3 class="font-display font-normal text-xl text-cream">Skontaktuj się z nami</h3>
+      <p class="mt-2 text-sm text-muted">Masz pytania albo pomysł na projekt? Napisz — odpowiadamy w mniej niż 24 godziny.</p>
+
+      <form id="contact-form" class="mt-6 flex flex-col sm:flex-row gap-3">
+        <label for="contact-email" class="sr-only">Adres e-mail</label>
+        <input id="contact-email" type="email" required placeholder="Twój adres e-mail"
+          class="flex-1 rounded-full bg-surface border border-white/10 px-5 py-3 text-sm text-cream placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-amber/70 focus:border-amber/60 transition">
+        <button type="submit" class="btn-amber text-ink font-display font-normal text-sm px-6 py-3 rounded-full hover:brightness-110 transition">Wyślij</button>
+      </form>
+      <p id="contact-success" class="hidden mt-4 text-sm text-gold">Dziękujemy! Skontaktujemy się wkrótce.</p>
+    </div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto mt-16 pt-6 border-t border-white/[0.06] text-center text-xs text-muted">
+    © 2026 BMteam. Wszelkie prawa zastrzeżone.
+  </div>
+</footer>
+
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Ambient light particles
+  if (!prefersReducedMotion) {
+    const particleLayer = document.getElementById('particles');
+    const particleCount = 26;
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('span');
+      particle.className = 'particle';
+      const size = 2 + Math.random() * 3;
+      const left = Math.random() * 100;
+      const duration = 12 + Math.random() * 10;
+      const delay = Math.random() * -duration;
+      const drift = Math.round(Math.random() * 60 - 30);
+      const peak = (0.35 + Math.random() * 0.35).toFixed(2);
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${left}%`;
+      particle.style.setProperty('--drift', `${drift}px`);
+      particle.style.setProperty('--peak', peak);
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `${delay}s`;
+      particleLayer.appendChild(particle);
+    }
+  }
+
+  // Header background on scroll
+  const header = document.getElementById('header');
+  const onScroll = () => {
+    if (window.scrollY > 20) {
+      header.classList.add('bg-ink/80', 'header-blur', 'border-b', 'border-white/5');
+    } else {
+      header.classList.remove('bg-ink/80', 'header-blur', 'border-b', 'border-white/5');
+    }
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    menuToggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+  document.querySelectorAll('.mobile-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach((el) => io.observe(el));
+  }
+
+  // Card spotlight glow following cursor
+  document.querySelectorAll('.glow-card').forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+    });
+  });
+
+  // Reusable horizontal carousel wiring
+  const wireCarousel = (trackId, prevId, nextId, itemSelector) => {
+    const track = document.getElementById(trackId);
+    const prevBtn = document.getElementById(prevId);
+    const nextBtn = document.getElementById(nextId);
+    if (!track || !prevBtn || !nextBtn) return;
+    const scrollByItem = (dir) => {
+      const item = track.querySelector(itemSelector);
+      if (!item) return;
+      const gap = 20;
+      track.scrollBy({ left: dir * (item.offsetWidth + gap), behavior: 'smooth' });
+    };
+    prevBtn.addEventListener('click', () => scrollByItem(-1));
+    nextBtn.addEventListener('click', () => scrollByItem(1));
+  };
+  wireCarousel('testimonial-track', 'testi-prev', 'testi-next', 'article');
+  wireCarousel('insp-track', 'insp-prev', 'insp-next', 'article');
+
+  // Product tabs — dane z katalogu BMT Modern Lighting 2025
+  const products = [
+    {
+      name: 'M2 WALL POINTS 6W',
+      image: 'assets/products/m2-wall-points-6w.png',
+      desc: 'Magnetyczna oprawa punktowa do systemów szynowych M2 48V. Obrotowa głowica z 6 punktami LED pozwala precyzyjnie ukierunkować światło tam, gdzie jest potrzebne.',
+      specs: [
+        'Wysoki współczynnik oddawania barw CRI ≥ 95',
+        'Ściemnianie DALI DT8 CCT, DALI DT6 lub ON/OFF',
+        'Niskonapięciowy system szynowy M2 48V',
+        'Dostępna w kolorze czarnym i białym',
+      ],
+    },
+    {
+      name: 'M2 LINE 24W',
+      image: 'assets/products/m2-line-24w.png',
+      desc: 'Liniowa oprawa szynowa o smukłej, minimalistycznej formie (600×22×26mm). Sprawdza się jako główne oświetlenie funkcjonalne w salonach, biurach i przestrzeniach handlowych.',
+      specs: [
+        'CRI ≥ 95, moc 24W, długość 600mm',
+        'Ściemnianie DALI DT8 CCT, DALI DT6 lub ON/OFF',
+        'Smukły profil 22×26mm',
+        'Dostępna w kolorze czarnym i białym',
+      ],
+    },
+    {
+      name: 'LEGACY 4X 15W',
+      image: 'assets/products/legacy-4x-15w.png',
+      desc: 'Architektoniczna oprawa liniowa o długości 2 metrów, z czterema niezależnymi modułami po 15W. Flagowa linia BMT do przestrzeni biurowych i showroomów.',
+      specs: [
+        'Strumień świetlny 4326lm, CRI > 90',
+        'Integracja z OZI-SMART, DALI, TUYA, ZIGBEE',
+        'Długość 2 metry, 4 niezależne moduły 15W',
+        'Montaż natynkowy, kolor czarny lub biały',
+      ],
+    },
+    {
+      name: 'MOONLIGHT 80W',
+      image: 'assets/products/moonlight-80w.png',
+      desc: 'Dekoracyjny plafon o średnicy 80 cm — mocny akcent w salonach, recepcjach i przestrzeniach reprezentacyjnych. Złota obwódka podkreśla charakter wnętrza.',
+      specs: [
+        'Strumień świetlny 9055lm, kąt 110°, CRI > 90',
+        'Sterowanie DALI, TUYA, ZIGBEE lub ON/OFF',
+        'Wykończenie czarno-złote, biało-złote, czarne lub białe',
+        'Wymiary φ800×95mm, montaż natynkowy',
+      ],
+    },
+    {
+      name: 'M2 PENDANT 7W',
+      image: 'assets/products/m2-pendant-7w.png',
+      desc: 'Zwieszana oprawa punktowa do systemu szynowego M2 — smukła forma idealna nad wyspą kuchenną, barem czy stołem jadalnym.',
+      specs: [
+        'CRI ≥ 95, moc 7W',
+        'Ściemnianie DALI DT8 CCT, DALI DT6 lub ON/OFF',
+        'Kompaktowa forma Φ40×300mm',
+        'Montaż w systemie szynowym M2',
+      ],
+    },
+  ];
+  let productIndex = 0;
+  const productTabs = document.querySelectorAll('.product-tab');
+  const renderProduct = () => {
+    const p = products[productIndex];
+    const panel = document.getElementById('product-panel');
+    panel.querySelector('.product-name').textContent = p.name;
+    panel.querySelector('.product-desc').textContent = p.desc;
+    const img = panel.querySelector('.product-image');
+    img.src = p.image;
+    img.alt = p.name;
+    const items = panel.querySelectorAll('.product-specs li span');
+    p.specs.forEach((s, i) => {
+      if (items[i]) items[i].textContent = s;
+    });
+    productTabs.forEach((tab, i) => {
+      if (i === productIndex) {
+        tab.className = 'product-tab btn-amber text-ink font-display font-normal text-sm px-5 py-2.5 rounded-full transition';
+      } else {
+        tab.className = 'product-tab border border-white/15 text-cream/70 font-display font-normal text-sm px-5 py-2.5 rounded-full transition hover:border-amber/40';
+      }
+    });
+  };
+  productTabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      productIndex = i;
+      renderProduct();
+    });
+  });
+
+  // Contact form (front-end only — wire to real email service before launch)
+  document.getElementById('contact-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    document.getElementById('contact-success').classList.remove('hidden');
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
