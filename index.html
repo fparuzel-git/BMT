@@ -64,6 +64,15 @@
   }
   .glow-card:hover::before { opacity: 1; }
 
+  #product-panel { transition: opacity .22s ease, transform .22s ease; }
+  #product-panel.is-switching { opacity: 0; transform: translateY(10px) scale(.99); }
+
+  .faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item .faq-icon { flex-shrink: 0; transition: transform .3s ease; }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); }
+  .faq-item .faq-answer { margin-top: 14px; }
+
   .bento-img {
     position: absolute;
     pointer-events: none;
@@ -421,11 +430,11 @@
     </p>
 
     <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="#o-nas" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 btn-amber shimmer-btn text-ink font-display font-normal px-7 py-3.5 rounded-full hover:brightness-110 transition">
+      <a href="#o-nas" class="magnetic-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 btn-amber shimmer-btn text-ink font-display font-normal px-7 py-3.5 rounded-full hover:brightness-110 transition">
         Poznaj nas
         <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
       </a>
-      <a href="#produkty" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-cream/20 text-cream font-display font-normal px-7 py-3.5 rounded-full hover:bg-white/5 transition">
+      <a href="#produkty" class="magnetic-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-cream/20 text-cream font-display font-normal px-7 py-3.5 rounded-full hover:bg-white/5 transition">
         Sprawdź nowości
       </a>
     </div>
@@ -442,19 +451,19 @@
   <div class="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 reveal">
     <!-- TODO: podmienić na rzeczywiste dane firmy -->
     <div class="text-center">
-      <p class="font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">15+</p>
+      <p class="stat-number font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">15+</p>
       <p class="mt-1 text-xs sm:text-sm text-muted">lat doświadczenia</p>
     </div>
     <div class="text-center">
-      <p class="font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">500+</p>
+      <p class="stat-number font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">500+</p>
       <p class="mt-1 text-xs sm:text-sm text-muted">zrealizowanych projektów</p>
     </div>
     <div class="text-center">
-      <p class="font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">98%</p>
+      <p class="stat-number font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">98%</p>
       <p class="mt-1 text-xs sm:text-sm text-muted">zadowolonych klientów</p>
     </div>
     <div class="text-center">
-      <p class="font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">30+</p>
+      <p class="stat-number font-display font-normal text-3xl sm:text-4xl bg-gradient-to-br from-cream to-cream/60 bg-clip-text text-transparent">30+</p>
       <p class="mt-1 text-xs sm:text-sm text-muted">miast w Polsce</p>
     </div>
   </div>
@@ -882,7 +891,7 @@
 
     <div class="mt-10 reveal">
       <div id="product-panel" class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="aspect-square rounded-3xl border border-amber/25 relative overflow-hidden shadow-[0_0_50px_8px_rgba(242,153,74,0.14),0_0_110px_35px_rgba(242,153,74,0.09)]">
+        <div class="tilt-3d aspect-square rounded-3xl border border-amber/25 relative overflow-hidden shadow-[0_0_50px_8px_rgba(242,153,74,0.14),0_0_110px_35px_rgba(242,153,74,0.09)]">
           <img class="product-image absolute inset-0 w-full h-full object-cover" src="assets/products/m2-wall-points-6w.png" alt="M2 Wall Points 6W">
         </div>
 
@@ -914,6 +923,60 @@
   </div>
 </section>
 
+<!-- ================= FAQ ================= -->
+<section id="faq" class="relative py-28 px-6">
+  <div class="absolute top-0 inset-x-0 led-line"></div>
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center reveal">
+      <span class="text-xs font-display tracking-[0.25em] uppercase text-gold">FAQ</span>
+      <h2 class="mt-4 font-display font-normal text-3xl sm:text-4xl leading-tight text-cream">Częste pytania</h2>
+    </div>
+
+    <div class="mt-12 space-y-4 reveal">
+      <details class="faq-item rounded-2xl border border-white/[0.06] bg-surface px-7 py-5" open>
+        <summary>
+          <span class="font-display font-normal text-lg text-cream">Ile kosztuje konsultacja?</span>
+          <svg viewBox="0 0 24 24" class="faq-icon w-5 h-5 text-amber" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="faq-answer text-sm text-muted leading-relaxed">Nic. Pierwsza konsultacja jest bezpłatna i do niczego nie zobowiązuje — poznajemy Twoje potrzeby, wnętrze i styl życia, a dopiero potem proponujemy konkretne rozwiązania.</p>
+      </details>
+
+      <details class="faq-item rounded-2xl border border-white/[0.06] bg-surface px-7 py-5">
+        <summary>
+          <span class="font-display font-normal text-lg text-cream">Czy muszę wymieniać system sterowania, który już mam?</span>
+          <svg viewBox="0 0 24 24" class="faq-icon w-5 h-5 text-amber" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="faq-answer text-sm text-muted leading-relaxed">Nie. Nasze oprawy integrują się z systemami, które już masz — DALI, KNX, LUTRON, TUYA, ZIGBEE, Bluetooth, sieciami mesh i Alexą. Dobieramy technologię do Twojej instalacji, nie odwrotnie.</p>
+      </details>
+
+      <details class="faq-item rounded-2xl border border-white/[0.06] bg-surface px-7 py-5">
+        <summary>
+          <span class="font-display font-normal text-lg text-cream">Co dostanę przed montażem?</span>
+          <svg viewBox="0 0 24 24" class="faq-icon w-5 h-5 text-amber" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="faq-answer text-sm text-muted leading-relaxed">Szczegółowy projekt iluminacji: rozmieszczenie punktów świetlnych, dobór temperatur barwowych i scenariusze sterowania — wszystko zanim padnie pierwszy kabel. Zero zgadywania na budowie.</p>
+      </details>
+
+      <details class="faq-item rounded-2xl border border-white/[0.06] bg-surface px-7 py-5">
+        <summary>
+          <span class="font-display font-normal text-lg text-cream">Czy zajmujecie się też modernizacją istniejącego oświetlenia?</span>
+          <svg viewBox="0 0 24 24" class="faq-icon w-5 h-5 text-amber" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <!-- TODO: potwierdzić z klientem zakres usług modernizacyjnych -->
+        <p class="faq-answer text-sm text-muted leading-relaxed">Tak — pracujemy zarówno przy nowych inwestycjach, jak i przy modernizacjach. Niskonapięciowe systemy szynowe 48V często można wprowadzić bez generalnego remontu.</p>
+      </details>
+
+      <details class="faq-item rounded-2xl border border-white/[0.06] bg-surface px-7 py-5">
+        <summary>
+          <span class="font-display font-normal text-lg text-cream">Co się dzieje po montażu?</span>
+          <svg viewBox="0 0 24 24" class="faq-icon w-5 h-5 text-amber" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="faq-answer text-sm text-muted leading-relaxed">Współpraca nie kończy się na odbiorze. Jesteśmy pod telefonem, gdy chcesz rozbudować system, zmienić scenariusze światła albo po prostu masz pytanie.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ================= CTA BANNER ================= -->
 <section class="relative py-28 px-6 overflow-hidden bg-surface/40">
   <div class="absolute top-0 inset-x-0 led-line"></div>
@@ -921,7 +984,7 @@
   <div class="relative max-w-3xl mx-auto text-center reveal">
     <h2 class="text-shield font-display font-normal text-3xl sm:text-4xl lg:text-5xl leading-tight text-cream">Gotowy rozświetlić swoją przestrzeń?</h2>
     <p class="text-shield mt-5 text-muted max-w-xl mx-auto">Porozmawiajmy o Twoim projekcie, zanim zdecydujesz się na cokolwiek — konsultacja jest bezpłatna i do niczego nie zobowiązuje.</p>
-    <a href="#kontakt" class="mt-8 inline-flex items-center gap-2 btn-amber shimmer-btn text-ink font-display font-normal px-8 py-4 rounded-full hover:brightness-110 transition">
+    <a href="#kontakt" class="magnetic-btn mt-8 inline-flex items-center gap-2 btn-amber shimmer-btn text-ink font-display font-normal px-8 py-4 rounded-full hover:brightness-110 transition">
       Umów bezpłatną konsultację
       <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
     </a>
@@ -969,6 +1032,7 @@
         <a href="#proces" class="hover:text-amber transition w-fit">Proces</a>
         <a href="#inspiracje" class="hover:text-amber transition w-fit">Inspiracje</a>
         <a href="#produkty" class="hover:text-amber transition w-fit">Produkty</a>
+        <a href="#faq" class="hover:text-amber transition w-fit">FAQ</a>
         <a href="#kontakt" class="hover:text-amber transition w-fit">Kontakt</a>
       </nav>
     </div>
@@ -1104,6 +1168,82 @@
     });
   });
 
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // 3D tilt on cards and the product visual — mouse devices only
+  if (!prefersReducedMotion && finePointer) {
+    document.querySelectorAll('.glow-card, .tilt-3d').forEach((el) => {
+      const maxTilt = el.classList.contains('tilt-3d') ? 7 : 4;
+      el.addEventListener('mouseenter', () => {
+        el.style.transition = 'transform .12s ease-out';
+      });
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `perspective(900px) rotateX(${(-py * maxTilt).toFixed(2)}deg) rotateY(${(px * maxTilt).toFixed(2)}deg)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transition = 'transform .5s ease';
+        el.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
+        setTimeout(() => { el.style.transition = ''; el.style.transform = ''; }, 500);
+      });
+    });
+  }
+
+  // Magnetic CTA buttons
+  if (!prefersReducedMotion && finePointer) {
+    document.querySelectorAll('.magnetic-btn').forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+        const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+        btn.style.transform = `translate(${(dx * 5).toFixed(1)}px, ${(dy * 4).toFixed(1)}px)`;
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  // Stats count-up on scroll into view
+  const statEls = document.querySelectorAll('.stat-number');
+  if (statEls.length && !prefersReducedMotion && 'IntersectionObserver' in window) {
+    const animateStat = (el) => {
+      const m = el.textContent.trim().match(/^(\d+)(.*)$/);
+      if (!m) return;
+      const target = parseInt(m[1], 10);
+      const suffix = m[2] || '';
+      const dur = 1400;
+      const t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min((t - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateStat(entry.target);
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    statEls.forEach((el) => statObserver.observe(el));
+  }
+
+  // FAQ accordion — only one item open at a time
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        document.querySelectorAll('.faq-item[open]').forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+
   // Reusable horizontal carousel wiring
   const wireCarousel = (trackId, prevId, nextId, itemSelector) => {
     const track = document.getElementById(trackId);
@@ -1218,6 +1358,8 @@
     p.specs.forEach((s, i) => {
       if (items[i]) items[i].textContent = s;
     });
+  };
+  const updateTabs = () => {
     productTabs.forEach((tab, i) => {
       if (i === productIndex) {
         tab.className = 'product-tab btn-amber text-ink font-display font-normal text-sm px-5 py-2.5 rounded-full transition shrink-0 snap-start';
@@ -1228,9 +1370,20 @@
   };
   productTabs.forEach((tab, i) => {
     tab.addEventListener('click', () => {
+      if (i === productIndex) return;
       productIndex = i;
-      renderProduct();
+      updateTabs();
       tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      const panel = document.getElementById('product-panel');
+      if (prefersReducedMotion) {
+        renderProduct();
+        return;
+      }
+      panel.classList.add('is-switching');
+      setTimeout(() => {
+        renderProduct();
+        panel.classList.remove('is-switching');
+      }, 220);
     });
   });
 
