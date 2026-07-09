@@ -24,7 +24,10 @@ bmt-modern-lighting/
 
 ## Wdrożenie (GitHub Pages) — jak działa aktualizacja dla klienta
 - Repo: **https://github.com/fparuzel-git/BMT**
-- Live link wysłany klientowi: **https://fparuzel-git.github.io/BMT/**
+- **Domena produkcyjna: https://bmt-light.pl** (custom domain przez plik `CNAME` w repo; kupiona w domena.pl).
+  DNS: 4× rekord A na IP GitHub Pages (185.199.108–111.153) + `www` CNAME → `fparuzel-git.github.io`,
+  ustawione w panelu domena.pl (Hosting → Delegacje). Rekordy pocztowe (MX/SPF/DKIM/imap/pop3/smtp) nietknięte.
+- Stary adres **https://fparuzel-git.github.io/BMT/** dalej działa i przekierowuje na domenę.
 - Lokalny folder jest połączony z repo jako `origin` (branch `main`), lokalna tożsamość gita ustawiona
   (`user.name=fparuzel-git`, `user.email=fparuzel-git@users.noreply.github.com` — lokalny config repo, nie globalny).
 - **Dane logowania do GitHub są już zapisane w systemie** (Credential Manager) — `git push` działa bez
@@ -97,11 +100,17 @@ sprawdź renderem strony (`page.get_pixmap()`) zanim obiecasz zdjęcie danego pr
 Legacy 4X 15W, Moonlight 80W, M2 Pendant 7W. Dane (JS tablica `products` w `<script>` na dole `index.html`)
 i zdjęcia są prawdziwe, wyciągnięte z katalogu.
 
+## Dane firmy (realne, potwierdzone przez klienta)
+- Adres: ul. Ludowa 109, 42-215 Częstochowa, Polska
+- Tel: +48 570 795 700 · Godziny: pon.–pt. 9:00–17:00 · E-mail: biuro@bmteam.pl
+- Instagram: https://www.instagram.com/bmteam.pl/ · Sklep/„Strefa Architekta": https://bm.sklep.pl
+
 ## Wciąż placeholder / do uzupełnienia (oznaczone `<!-- TODO -->` w kodzie)
-- Numer telefonu i godziny otwarcia w stopce.
 - Statystyki w pasku pod hero (15+ lat, 500+ projektów, 98%, 30+ miast) — **wymyślone liczby**, trzeba podmienić
   na realne dane klienta.
 - Ocena "4.9/5 z 210+ opinii" nad karuzelą opinii — również placeholder.
+- Linki social media Facebook/LinkedIn w stopce → nadal `#` (Instagram już podpięty).
+- FAQ: pytanie o modernizację ma `TODO` do potwierdzenia zakresu usług.
 
 ## Preferencje użytkownika (obserwacje z tej sesji)
 - Lubi szybkie działanie bez nadmiernego dopytywania przy zmianach kreatywnych/wizualnych — deleguje zaufanie.
